@@ -1,5 +1,5 @@
 <script setup>
-import Menu from '@/components/Menu.vue';
+import Menu from '@/components/MenuTransition.vue';
 </script>
 
 <template>
