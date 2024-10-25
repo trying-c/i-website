@@ -1,8 +1,11 @@
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { useStore } from "@/store";
 const store = useStore();
 const emit = defineEmits(['menuChange']);
+const router = useRouter();
+
 let menuList = ref([
     { name: 'home', label: '扉页' },
     { name: 'portfolio', label: '作品' },
@@ -12,6 +15,7 @@ let activeItem = ref(store.activeItem);
 
 function handleMenuClick(item) {
     activeItem.value = item.name;
+    router.push({ name: activeItem.value });
     emit('menuChange', item)
 }
 </script>
@@ -30,11 +34,8 @@ function handleMenuClick(item) {
 <style lang="scss" scoped>
 .website {
     &-menu {
-        @include basic-box;
-
         ul {
             margin: 0 auto;
-            // padding: 0 16px;
             width: 380px;
             display: flex;
             justify-content: space-between;

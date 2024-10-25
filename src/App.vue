@@ -1,18 +1,15 @@
 <script setup>
 import Menu from '@/components/Menu.vue';
-import { ref, watch } from 'vue';
 
-let activeItem = ref(null);
-watch(activeItem, (newItem, oldItem) => {
-    console.log(newItem, oldItem);
-},{
-    immediate: true
-})
 </script>
 
 <template>
     <div class="website-container">
-        <Menu @menu-change="item => activeItem = item.name" />
+        <Menu class="website-nav" />
+
+        <div class="website-main">
+            <router-view />
+        </div>
     </div>
 </template>
 
@@ -31,6 +28,20 @@ watch(activeItem, (newItem, oldItem) => {
         box-shadow: 0 5px 25px hsla(0, 0%, 56%, 0.3);
 
         font-family: $font-round;
+
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    &-nav {
+        margin-bottom: 16px;
+    }
+
+    &-main {
+        flex: 1;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
     }
 }
 </style>
