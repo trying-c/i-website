@@ -1,8 +1,8 @@
 $font-round: Varela Round;
 
-@mixin basic-box {
-  padding: 16px;
-  margin: 5px;
+@mixin matte-finish-box {
+  background: hsla(0, 0%, 35%, 0.3);
+  backdrop-filter: blur(2px);
 }
 
 $primary-1: hsl(162, 30%, 22%);

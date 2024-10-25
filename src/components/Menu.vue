@@ -13,7 +13,7 @@ let menuList = ref([
 ])
 let activeItem = ref(store.activeItem);
 
-function handleMenuClick(item) {
+function handleMenuChange(item) {
     activeItem.value = item.name;
     router.push({ name: activeItem.value });
     emit('menuChange', item)
@@ -21,28 +21,24 @@ function handleMenuClick(item) {
 </script>
 
 <template>
-    <nav class="website-menu">
-        <ul>
-            <li class="website-menu-item" :class="[item.name == activeItem ? 'website-menu-active-item' : '']"
-                v-for="(item, index) in menuList" :key="index" @click="e => handleMenuClick(item)">
-                {{ item.label }}
-            </li>
-        </ul>
-    </nav>
+    <ul class="website-menu">
+        <li class="website-menu-item" :class="[item.name == activeItem ? 'website-menu-active-item' : '']"
+            v-for="(item, index) in menuList" :key="index" @click="e => handleMenuChange(item)">
+            {{ item.label }}
+        </li>
+    </ul>
 </template>
 
 <style lang="scss" scoped>
 .website {
     &-menu {
-        ul {
-            margin: 0 auto;
-            width: 380px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid #FFFFFF;
-            border-radius: 999px;
-        }
+        margin: 0 auto;
+        width: 380px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #FFFFFF;
+        border-radius: 999px;
 
 
         &-item {

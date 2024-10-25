@@ -1,6 +1,5 @@
 <script setup>
 import Menu from '@/components/Menu.vue';
-
 </script>
 
 <template>
@@ -16,17 +15,8 @@ import Menu from '@/components/Menu.vue';
 <style lang="scss" scoped>
 .website {
     &-container {
-        aspect-ratio: 18 / 9; // 保持盒子比例
-        height: 88%;
-        min-height: 400px;
-
-        border: 1px solid hsla(0, 0%, 88%, 0.3);
-        border-radius: 15px;
-
-        background: hsla(0, 0%, 35%, 0.3);
-        backdrop-filter: blur(2px);
-        box-shadow: 0 5px 25px hsla(0, 0%, 56%, 0.3);
-
+        width: 100%;
+        height: 100%;
         font-family: $font-round;
 
         display: flex;
@@ -36,12 +26,23 @@ import Menu from '@/components/Menu.vue';
 
     &-nav {
         margin-bottom: 16px;
+        @include matte-finish-box;
     }
 
     &-main {
         flex: 1;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        border-radius: 8px;
+        border-radius: 15px;
+        border: 1px solid hsla(0, 0%, 88%, 0.3);
+        box-shadow: 0 5px 25px hsla(0, 0%, 56%, 0.3);
+        color: #FFFFFF;
+
+        @include matte-finish-box;
+
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.25rem;
     }
 }
 </style>
