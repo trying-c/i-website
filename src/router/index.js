@@ -2,6 +2,11 @@
 const routes = [
     {
         path: '/',
+        name: 'index',
+        component: () => import('../views/index.vue')
+    },
+    {
+        path: '/home',
         name: 'home',
         label: '首页',
         component: () => import('../views/home.vue')

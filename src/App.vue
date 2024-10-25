@@ -1,13 +1,17 @@
 <script setup>
 import Menu from '@/components/MenuTransition.vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 </script>
 
 <template>
     <div class="website-container">
-        <Menu class="website-nav" />
-
+        <Menu v-if="route.path != '/'" class="website-nav" />
         <div class="website-main">
-            <router-view />
+            <transition name="slide-fade">
+                <router-view />
+            </transition>
         </div>
     </div>
 </template>

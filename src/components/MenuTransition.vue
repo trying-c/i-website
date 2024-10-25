@@ -1,22 +1,35 @@
 <script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { nextTick, onMounted, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { useStore } from "@/store";
 import routes from '../router/index';
 const store = useStore();
 const router = useRouter();
+const route = useRoute();
 
-let menuList = ref(routes.map(({ label, name }, i) => ({ label: label || name || '--', name, id: `nav_${i}` })));
-let activeItem = ref(store.activeItem);
+let menuList = ref(routes.filter(t => t.label).map(({ label, name }, i) => ({
+    label: label || '--',
+    name, id: `nav_${i}`
+})));
+
+let activeItem = ref(null);
+
+onMounted(() => {
+    nextTick(() => {
+        activeItem.value = route.name;
+    })
+})
 
 function handleMenuChange(item) {
     activeItem.value = item.name;
     router.push({ name: activeItem.value });
 }
+
 </script>
 
 <template>
-    <input type="radio" v-for="item in menuList" :key="item.id" :id="item.id" name="nav" style="display: none;" />
+    <input class="menu-input" type="radio" v-for="item in menuList" :key="item.id" :id="item.id" name="nav"
+        :value="item.name" v-model="activeItem" />
 
     <ul class="website-menu">
         <li class="website-menu-item" :class="[item.name == activeItem ? 'website-menu-active-item' : '']"
@@ -31,6 +44,10 @@ function handleMenuChange(item) {
 $item-width: 125px;
 $item-padding: 5px;
 $box-r: 999px;
+
+input.menu-input {
+    display: none;
+}
 
 .website-menu {
     @include matte-finish-box;
